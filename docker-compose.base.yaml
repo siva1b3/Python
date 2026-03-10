@@ -1,7 +1,7 @@
 
 services:
-  base_nodejs_service:
+  base_python_service:
     image: python:3.14.3-bookworm
-    container_name: base_nodejs_service_container
+    container_name: base_python_service_container
     tty: true
     stdin_open: true
