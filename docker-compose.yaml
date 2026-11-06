@@ -1,0 +1,27 @@
+name: django-development
+
+services:
+  django-development-service:
+    container_name: django-development-container
+    image: python:3.14.10-bookworm
+    init: true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    working_dir: /workspace
+    command: [ "tail", "-f", "/dev/null" ]
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+    environment:
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    networks:
+      - django-development-network
+
+networks:
+  django-development-network:
+    driver: bridge
