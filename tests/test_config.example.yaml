@@ -1,0 +1,16 @@
+verbose: true
+
+# Switch top-level test folders on or off.
+run:
+  setup_test: true
+  smoke_test: true
+
+# Paths are relative to tests/. Only listed subfolders run under enabled folders.
+paths:
+  setup_test:
+    path: setup
+    subfolders:
+      database: setup/database
+      integrations: setup/integrations
+  smoke_test: 
+    path: smoke
