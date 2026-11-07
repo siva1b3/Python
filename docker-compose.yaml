@@ -11,7 +11,7 @@ services:
     tty: true
     restart: unless-stopped
 
-    working_dir: /workspace
+    working_dir: /siva
     command: [ "tail", "-f", "/dev/null" ]
 
     ports:
@@ -19,17 +19,14 @@ services:
 
     volumes:
       - type: bind
-        source: ./workspace
-        target: /workspace
+        source: ./
+        target: /siva
         bind:
           create_host_path: true
 
     environment:
       PYTHONUNBUFFERED: "1"
       PYTHONDONTWRITEBYTECODE: "1"
-      UV_PROJECT_ENVIRONMENT: /opt/venv
-      UV_LINK_MODE: copy
-      VIRTUAL_ENV: /opt/venv
 
     networks:
       - django-development-network

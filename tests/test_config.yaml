@@ -1,0 +1,10 @@
+# Set a suite to false to skip it.
+run:
+  setup: true
+  django_startup: true
+
+suites:
+  setup:
+    script: setup/check_dependencies.py
+  django_startup:
+    script: smoke/check_django_project.py
