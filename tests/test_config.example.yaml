@@ -1,11 +1,18 @@
+# Copy this file to tests/test_config.yaml and edit that local copy.
+# From the project root in the development container, run python tests/run_tests.py.
+
+# true shows each test's name and result. false shows compact progress and a summary.
 verbose: true
 
-# Switch top-level test folders on or off.
+# Set a suite to true to run it or false to skip it. Each enabled key needs
+# a matching entry under paths.
 run:
   setup_test: true
   smoke_test: true
 
-# Paths are relative to tests/. Only listed subfolders run under enabled folders.
+# All folder paths are relative to tests/. An enabled folder includes its
+# direct Python files. List the child folders you want under subfolders.
+# Omit a child folder to skip it and everything inside it.
 paths:
   setup_test:
     path: setup
