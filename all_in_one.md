@@ -332,3 +332,597 @@ confuguation , confugation managemnt , feature flags in confutaion is the high p
     - Code coverage reporting
     - Automated quality checks in continuous integration
 
+
+
+1. **Business rules and application workflows**
+   - Valid actions and operation preconditions
+   - Business rule validation
+   - Allowed state transitions
+   - Workflow steps and execution order
+   - Business constraints and invariants
+   - Operation ownership and accountability
+   - Completion, cancellation, and failure rules
+
+2. **Data ownership, storage, and retrieval**
+   - **Application state**
+     - User accounts and profiles
+     - User sessions and authentication state
+     - Job status and results
+     - Operation history and remote identifiers
+     - Reference data and application settings
+   - **Data types and storage**
+     - Structured records and relationships
+     - JSON and document data
+     - Files, images, audio, and video
+     - Geospatial data
+     - Time-series data
+     - Search indexes
+   - **Data access**
+     - Authoritative sources and field ownership
+     - Data models and access patterns
+     - Indexing and partitioning
+     - Query optimization
+     - Pagination and bounded result sets
+     - Data retention, archival, and deletion
+
+3. **Data evolution and initialization**
+   - Schema versioning
+   - Database migrations
+   - Backward-compatible schema changes
+   - Data migrations and backfills
+   - Migration ordering and verification
+   - Reference data and seed data
+   - Repeatable initialization scripts
+   - Old-data and new-code compatibility
+
+4. **Concurrency and data consistency**
+   - **Concurrent changes**
+     - Concurrent user edits
+     - Conflicting requests and background jobs
+     - Lost-update prevention
+     - Optimistic concurrency and record versions
+     - Conditional writes and conflict detection
+     - Locking where supported
+     - Conflict rejection, merging, and resolution
+   - **Transactions and constraints**
+     - Atomic operation boundaries
+     - Transaction isolation where supported
+     - Uniqueness and integrity constraints
+     - Race-condition prevention
+   - **Cross-system consistency**
+     - Local and remote ID mappings
+     - Cassandra–ArcGIS write ordering
+     - Durable operation and step tracking
+     - Partial-write detection
+     - Reconciliation and compensating actions
+     - Automatic and manual recovery
+
+5. **Configuration management and feature flags**
+   - **Configuration**
+     - Environment-specific files and overrides
+     - Configuration sources and precedence
+     - Connection settings and service endpoints
+     - Feature-specific settings
+     - Timeout, retry, rate-limit, and logging settings
+     - Configuration schemas, defaults, and validation
+     - Startup loading and controlled runtime reloads
+     - Configuration versioning and change history
+     - Configuration–application-code boundaries
+   - **Feature flags**
+     - Feature enablement and disablement
+     - Emergency kill switches
+     - Gradual rollouts and user targeting
+     - Safe defaults and evaluation failures
+     - Compatible fallback code paths
+     - Flag access controls and audit history
+     - Flag ownership, expiry, and removal
+     - Testing enabled and disabled paths
+
+6. **Secrets, hashing, and encryption**
+   - Secret storage and access control
+   - Secret injection and configuration references
+   - Password hashing and verification
+   - General-purpose hashing and integrity checks
+   - Encryption in transit
+   - TLS certificate verification
+   - Encryption at rest
+   - Application-level encryption and controlled decryption
+   - Encryption key management
+   - Credential, token, key, and certificate rotation
+   - Secret revocation and expiry monitoring
+
+7. **Authentication, authorization, and sessions**
+   - **Authentication**
+     - User and service identity verification
+     - Login and logout
+     - Multifactor authentication where required
+     - Brute-force protection and login throttling
+     - Account lockout and recovery policies
+     - Downstream service authentication
+   - **Sessions and tokens**
+     - Session storage, creation, and renewal
+     - Session expiry and invalidation
+     - Secure cookie settings
+     - JWT signing and signature verification
+     - JWT issuer, audience, and expiry validation
+     - Access-token expiry
+     - Refresh-token rotation and revocation
+   - **Authorization**
+     - Role-based access control
+     - Action-level and resource-level permissions
+     - Principle of least privilege
+     - Service accounts and delegated user access
+     - File, job, and result permissions
+     - Event-stream and WebSocket permissions
+
+8. **Input validation and application security**
+   - **Validation and injection prevention**
+     - Type, schema, length, range, and format validation
+     - Input normalization
+     - Context-specific sanitization
+     - Parameterized SQL and Cassandra CQL queries
+     - Allowlisted fields, filters, and sort keys
+     - Command injection prevention
+     - Context-specific output encoding
+   - **Web and network security**
+     - Cross-site scripting prevention
+     - Cross-site request forgery protection
+     - Cross-origin resource sharing policies
+     - Server-side request forgery prevention
+     - Open redirect prevention
+     - Security headers and trusted-host validation
+   - **File upload security**
+     - File size and content-type validation
+     - File content and signature checks
+     - Safe filenames and storage paths
+     - Path traversal prevention
+     - Archive extraction limits
+     - Malware scanning where required
+     - Upload quarantine and access controls
+     - Uploaded-file execution prevention
+
+9. **HTTP APIs and request–response lifecycle**
+   - **Request processing**
+     - Routing and middleware order
+     - Request context and correlation IDs
+     - Authentication and permission checks
+     - Parsing and validation
+     - Business logic execution
+     - Response serialization and cleanup
+   - **API contracts**
+     - Request, response, and error schemas
+     - HTTP methods, headers, and status codes
+     - Synchronous and asynchronous responses
+     - Filtering and sorting
+     - Offset-based pagination
+     - Cursor-based pagination
+     - Stable ordering and page-size limits
+     - API versioning and backward compatibility
+     - Deprecation policies
+     - OpenAPI specifications and examples
+
+10. **External integrations and connection management**
+    - **Service integrations**
+      - Cassandra reads from `cleaned_01`
+      - HDFS file access
+      - Elasticsearch queries
+      - ArcGIS Server REST APIs
+      - Oracle visualization REST APIs
+      - Spark job submission and tracking
+      - Other external system APIs
+    - **Outbound requests and responses**
+      - Endpoints, HTTP methods, headers, and credentials
+      - Payload mapping and validation
+      - External HTTP and application-level errors
+      - Response schema validation
+      - Completed, pending, rejected, and unknown outcomes
+      - Remote resource IDs, job IDs, and status URLs
+      - Remote-to-local error mapping
+    - **Clients and connections**
+      - Service discovery and endpoint resolution
+      - Client and outbound session creation
+      - Connection pooling and reuse
+      - Pool limits and acquisition timeouts
+      - Worker and concurrency rules
+      - Reconnection and stale-connection handling
+      - Client and pool cleanup
+
+11. **Failure handling and resilience**
+    - **Errors and dependency outages**
+      - Error classification and stable error codes
+      - Safe, actionable client error messages
+      - Internal diagnostic details
+      - Error ownership and escalation routing
+      - Required and optional dependencies per operation
+      - Partial results and fallback rules
+      - Recovery after dependency restoration
+    - **Timeouts and retries**
+      - Connection, read, and write timeouts
+      - Overall operation deadlines
+      - Retryable and non-retryable failures
+      - Retry limits, exponential backoff, and jitter
+      - Driver and application retry coordination
+      - Retry budgets and retry-storm prevention
+    - **Circuit breakers and failure isolation**
+      - Circuit-breaker thresholds and states
+      - Recovery probes
+      - Separate resource pools for dependencies
+      - Cascading-failure prevention
+    - **Idempotency and duplicate prevention**
+      - Stable operation IDs
+      - Idempotency keys and request matching
+      - Durable duplicate-detection records
+      - Concurrent duplicate submissions
+      - Previous-result retrieval
+      - Unknown write outcomes and reconciliation
+
+12. **Rate limiting, throttling, and backpressure**
+    - Per-user, per-client, and per-endpoint limits
+    - Downstream quotas and `Retry-After` handling
+    - Burst limits and sustained-rate limits
+    - Request size and execution limits
+    - Connection and concurrency limits
+    - Bounded queues and buffers
+    - Backpressure propagation
+    - Slow-consumer handling
+    - Admission control and load shedding
+    - Resource fairness and starvation prevention
+
+13. **Caching and content delivery networks**
+    - **Application caching**
+      - Cache eligibility and cache keys
+      - Local and distributed caches
+      - Cache access isolation
+      - Time-to-live and eviction policies
+      - Cache invalidation
+      - Cache consistency and stale-data rules
+      - Cache warming and preloading
+      - Cache failures and fallback behavior
+      - Cache stampede and thundering-herd prevention
+      - Expiry jitter and request coalescing
+    - **HTTP caching and CDNs**
+      - Cache-control headers
+      - ETags and conditional requests
+      - Static asset and media delivery
+      - CDN cache keys and expiry
+      - Cache purging and asset versioning
+      - Private-content caching restrictions
+      - Signed URLs and protected content
+      - Origin protection
+
+14. **Messaging, events, and webhooks**
+    - **Message brokers**
+      - Producer and consumer configuration
+      - Topics, queues, routing, and subscriptions
+      - Message schemas and schema evolution
+      - Publishing and delivery confirmation
+      - Acknowledgments and offset commits
+      - Delivery guarantees and duplicate handling
+      - Ordering and partitioning
+      - Idempotent consumers
+      - Retry queues and dead-letter handling
+      - Poison messages and replay
+      - Consumer lag and backlog management
+    - **Event-driven workflows**
+      - Event ownership and contracts
+      - Event IDs, timestamps, and correlation
+      - Database-write and event-publication consistency
+      - Transactional outbox where applicable
+    - **Webhooks**
+      - Incoming and outgoing webhook contracts
+      - Signature verification
+      - Timestamp validation and replay protection
+      - Fast acknowledgment and deferred processing
+      - Delivery retries and duplicate detection
+      - Out-of-order delivery handling
+      - Delivery history and endpoint security
+
+15. **Background jobs, scheduling, and time**
+    - **Background jobs**
+      - Job submission and ownership
+      - Local and external job IDs
+      - Persistent status and result storage
+      - Progress, completion, and failure
+      - Polling and verified callbacks
+      - Job retries and duplicate prevention
+      - Cancellation, deadlines, and checkpoints
+      - Worker crashes and abandoned-job recovery
+      - Conflicting jobs and resource scheduling
+    - **Scheduled work**
+      - Cron jobs and periodic maintenance
+      - Event-triggered and time-triggered tasks
+      - Overlapping runs and singleton execution
+      - Missed runs and catch-up policies
+      - Schedule changes and execution history
+    - **Time handling**
+      - Timezone-aware timestamps
+      - UTC storage and local-time presentation
+      - User and business timezones
+      - Daylight-saving transitions
+      - Clock synchronization and clock skew
+      - Monotonic clocks for elapsed-time measurement
+
+16. **Real-time communication and large-data streaming**
+    - **SSE and WebSockets**
+      - Server-to-client notifications
+      - Bidirectional messaging
+      - Subscription authorization
+      - Message schemas and validation
+      - Heartbeats and idle timeouts
+      - Reconnection and disconnect cleanup
+      - Latest-state retrieval and event replay
+      - Slow-client handling and bounded buffers
+    - **Files and media**
+      - Streaming uploads and downloads
+      - Video, audio, and large-image delivery
+      - Chunked reads and writes
+      - HTTP range requests
+      - Resumable transfers
+      - Transfer integrity checks
+      - Bounded memory usage
+      - Cancellation and incomplete-transfer cleanup
+
+17. **Runtime lifecycle and health**
+    - **Startup**
+      - Configuration and dependency initialization
+      - Mandatory and optional startup dependencies
+      - Cold starts and warm-up
+      - Lazy and eager initialization
+      - Startup deadlines and failure behavior
+    - **Health checks**
+      - Liveness, readiness, and startup checks
+      - Individual dependency checks
+      - Connectivity, credential, and access checks
+      - Check timeouts and cached health results
+      - Last-checked timestamps
+      - Restricted diagnostic details
+    - **Graceful shutdown**
+      - Readiness transition and traffic draining
+      - In-flight request completion deadlines
+      - SSE and WebSocket closure
+      - Consumer shutdown and completed-work acknowledgments
+      - Job checkpointing where supported
+      - Connection cleanup
+      - Telemetry flushing
+
+18. **Logging and audit history**
+    - **Application logging**
+      - Application, access, and error logs
+      - Structured logging
+      - Log levels
+      - Request, operation, and job correlation IDs
+      - Remote request IDs
+      - Sensitive-data and PII minimization
+      - Redaction and log injection prevention
+    - **Log management**
+      - Collection agents and log shippers
+      - Centralized storage
+      - Search and log analytics
+      - Rotation, retention, and deletion
+      - Storage limits and access controls
+    - **Audit history**
+      - Authentication attempts and account lockouts
+      - Role and permission changes
+      - Data creation, modification, and deletion
+      - Configuration and feature-flag changes
+      - Actor, action, resource, timestamp, and outcome
+      - Audit integrity and tamper resistance
+      - Audit retention and access controls
+
+19. **Observability, diagnostics, and performance**
+    - **Instrumentation**
+      - Log, metric, and trace instrumentation
+      - Request and dependency metrics
+      - Connection-pool and resource metrics
+      - Broker, cache, and job metrics
+      - Distributed trace propagation
+      - Trace sampling and metric-cardinality limits
+    - **Error tracking**
+      - Exception capture and stack traces
+      - Error grouping and deduplication
+      - Release and deployment correlation
+      - Error ownership and routing
+    - **Diagnostics and profiling**
+      - Diagnostic management commands
+      - Request and trace lookup
+      - CPU and memory profiling
+      - Flame graphs
+      - Query profiling
+      - Memory leaks and connection leaks
+      - Cold-start and latency analysis
+    - **Dashboards and alerts**
+      - Operational dashboards
+      - External uptime monitoring
+      - User-journey checks
+      - Actionable alerts
+      - Alert deduplication and noise control
+
+20. **Automated testing and code quality**
+    - **Test types**
+      - Unit tests
+      - Integration tests
+      - API and message contract tests
+      - End-to-end tests
+      - Regression tests
+      - Security tests
+      - Load, stress, spike, and soak tests
+    - **Failure and correctness testing**
+      - Dependency outages and recovery
+      - Timeouts and malformed external responses
+      - Lost responses and duplicate submissions
+      - Concurrent edits and conflicting jobs
+      - Partial writes and reconciliation
+      - Cache invalidation and stampedes
+      - Streaming reconnects and slow consumers
+      - Graceful shutdown and restart recovery
+      - Migration and restore verification
+    - **Testing practices**
+      - Mocking, stubs, and fakes
+      - Test fixtures and isolated test data
+      - Test-driven development
+      - Deterministic tests and controlled clocks
+      - Code coverage and risk-based test selection
+      - Automated test execution in CI
+    - **Code quality**
+      - Linting and formatting
+      - Static type checking
+      - Code review
+      - Static security analysis
+      - Dependency vulnerability scanning
+      - Secret scanning
+
+21. **Shared code and application structure**
+    - Module boundaries and ownership
+    - Business services and workflow coordination
+    - Service-specific integration modules
+    - Reusable functions, classes, and middleware
+    - Shared validation and error formatting
+    - Request context and correlation helpers
+    - Timeout, retry, and pagination helpers
+    - Dependency injection where useful
+    - Shared-library versioning and compatibility
+
+22. **Builds, deployments, and rollback**
+    - Reproducible builds and pinned dependencies
+    - CI/CD pipelines and release checks
+    - Production server and reverse-proxy configuration
+    - Environment promotion
+    - Release versioning and deployment history
+    - Rolling, canary, and blue-green deployments
+    - Deployment verification and smoke tests
+    - Application-version rollback
+    - Feature disabling through flags
+    - Database migration sequencing
+    - Compatibility during mixed-version deployments
+    - Database rollback or forward repair
+    - Database recovery independent of feature flags
+    - Dependency updates and security patching
+
+23. **Backups and disaster recovery**
+    - Backup scope by datastore
+    - Backup scheduling and retention
+    - Backup encryption and access control
+    - Database and file backup coordination
+    - Point-in-time recovery where supported
+    - Recovery time objectives
+    - Recovery point objectives
+    - Restore testing
+    - Cross-system reconciliation after restoration
+    - Disaster-recovery procedures and exercises
+
+24. **Service reliability and incident management**
+    - Service-level indicators
+    - Service-level objectives
+    - Service-level agreements
+    - Error budgets
+    - Availability and capacity planning
+    - Redundancy and failover requirements
+    - Operational ownership and on-call responsibilities
+    - Incident severity and escalation
+    - Incident response runbooks
+    - Incident communication
+    - Postmortems and root-cause analysis
+    - Corrective actions and follow-up tracking
+
+25. **Cost and resource management**
+    - Compute, storage, and network costs
+    - External API and service costs
+    - Logging, metrics, and tracing costs
+    - Cache and CDN costs
+    - Cost allocation by service or feature
+    - Budgets and cost alerts
+    - Resource utilization and capacity forecasts
+    - Retention and storage-tier policies
+    - Unused-resource cleanup
+    - Cost–performance trade-offs
+
+
+
+
+**For your modular monolithic Django app, keep the business modules in one codebase and run supporting services in separate containers.** Django, its background worker, and its scheduler can share the same application image.
+
+Assuming a self-hosted Docker setup, this is the container inventory I would plan.
+
+**Main application and observability services:**
+
+| Container | Service | Responsibility | When needed |
+|---|---|---|---|
+| `container_01` | **Django + production ASGI server** | HTTP APIs, business modules, authentication, permissions, SSE, and WebSocket handlers | Core application |
+| `container_02` | **RabbitMQ** | Carries queued tasks and messages between publishers and consumers | Your chosen message broker |
+| `container_03` | **Grafana** | Dashboards, exploration, and alerts | Your chosen observability interface |
+| `container_04` | **PostgreSQL** | Application-owned accounts, permissions, sessions, job status, operation history, and related records | Recommended application database |
+| `container_05` | **Celery worker** | Executes background tasks using your Django application code | Background processing |
+| `container_06` | **Nginx** | HTTPS termination, reverse proxying, request limits, and static-file delivery | Unless existing infrastructure provides these |
+| `container_07` | **Redis** | Caching and, when used, Django Channels messaging between application processes | Conditional |
+| `container_08` | **Celery Beat** | Schedules periodic tasks and sends them through RabbitMQ | Scheduled jobs |
+| `container_09` | **Prometheus** | Collects and stores metrics | Metrics monitoring |
+| `container_10` | **Loki** | Stores and queries application and infrastructure logs | Centralized logging |
+| `container_11` | **Tempo** | Stores and queries traces | Request and distributed tracing |
+| `container_12` | **Grafana Alloy** | Collects and forwards telemetry, including logs and traces | Telemetry collection |
+
+**Grafana needs the data services behind it.** It queries sources such as Prometheus, Loki, and Tempo; Alloy provides the collection pipelines. Installing Grafana alone does not establish logging, metrics, and tracing. [GitHub](https://github.com/grafana/grafana/blob/main/docs/sources/datasources/_index.md?utm_source=chatgpt.com)
+
+For your application, I recommend PostgreSQL for the state Django owns. Your existing Cassandra `cleaned_01` data remains a separate integration. PostgreSQL is an officially supported Django database. [Django](https://docs.djangoproject.com/en/5.2/ref/databases/?utm_source=chatgpt.com)
+
+RabbitMQ carries work; **the Celery worker executes it**. Beat schedules work for workers, and you should run one active Beat scheduler for a given schedule to avoid duplicate scheduling. [Celery 5.7.0 documentation](https://docs.celeryq.dev/en/main/getting-started/introduction.html?utm_source=chatgpt.com) Redis is conditional: a Redis-backed Channels layer is useful for communication between Django processes, but a channel layer is not mandatory for every WebSocket implementation. [Channels 4.3.2 documentation](https://channels.readthedocs.io/en/stable/topics/channel_layers.html?utm_source=chatgpt.com)
+
+**Additional services, added for specific requirements:**
+
+| Service | Responsibility | Add when |
+|---|---|---|
+| **S3-compatible object storage** | Durable storage for telemetry and, where appropriate, application files | Suitable existing storage is unavailable |
+| **Grafana Pyroscope** | Continuous profiling and flame graphs | You need ongoing CPU or memory performance investigation. [Grafana Pyroscope documentation](https://grafana.com/docs/pyroscope/latest/configure-client/language-sdks/python/?utm_source=chatgpt.com) |
+| **Flower** | Celery worker and task monitoring interface | You want a dedicated task-management UI. [Flower 2.2.0 documentation](https://flower.readthedocs.io/en/latest/?utm_source=chatgpt.com) |
+| **ClamAV** | Malware scanning of uploaded files | Your upload-security policy requires scanning. [ClamAV Documentation](https://docs.clamav.net/manual/Usage/Scanning.html?highlight=false+positive\&utm_source=chatgpt.com) |
+| **PgBouncer** | PostgreSQL connection pooling outside Django | Connection pressure justifies a separate pooler. [pgbouncer.org](https://www.pgbouncer.org/features.html?utm_source=chatgpt.com) |
+| **Dedicated error-tracking platform** | Exception grouping, release comparisons, and issue triage | Logs and Grafana do not meet your error-investigation needs; deployment may require several containers |
+| **Central secrets service** | Shared secret distribution, access control, and rotation | File-mounted or platform-managed secrets no longer meet your requirements |
+
+For a learning deployment, Tempo supports local storage. For production, its documentation recommends object storage. Storage, persistence, and backups therefore need explicit planning alongside the containers. [Grafana Tempo documentation](https://grafana.com/docs/tempo/latest/reference-tempo-architecture/deployment-modes/?utm_source=chatgpt.com)
+
+**Monitoring capabilities that do not necessarily need additional containers:**
+
+- Host CPU, memory, disk, and network metrics.
+- Container resource metrics.
+- PostgreSQL and Redis metrics.
+- HTTP availability probes.
+
+Alloy includes integrations for these exporter functions, so separate exporter containers are a deployment choice. An uptime probe should also run outside the application host if it must detect that host failing. [Grafana Alloy documentation](https://grafana.com/docs/alloy/latest/reference/components/prometheus/?utm_source=chatgpt.com)
+
+Grafana includes an Alertmanager for notification handling, so a separate Alertmanager container is not mandatory for this design. [Grafana documentation](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/?utm_source=chatgpt.com)
+
+**Short-lived containers or scheduled jobs:**
+
+- Database migrations and seed-data loading.
+- Automated tests and code-quality checks.
+- Load tests.
+- Backups and restore verification.
+- Administrative maintenance commands.
+
+**Existing external systems your Django app connects to:**
+
+- Cassandra.
+- HDFS.
+- Elasticsearch.
+- ArcGIS Server.
+- Oracle REST services.
+- Spark cluster.
+
+These remain external services when already deployed. HDFS and Spark may each involve multiple processes or nodes; they should not automatically be represented as one container each.
+
+**Capabilities implemented inside the Django codebase:**
+
+- Business rules and module boundaries.
+- Authentication, authorization, and password hashing.
+- Input validation and injection prevention.
+- API contracts, pagination, and OpenAPI documentation.
+- Timeouts, retries, circuit breakers, and idempotency.
+- Concurrent-update protection.
+- Configuration and feature-flag evaluation.
+- Health endpoints.
+- Structured logging and metric instrumentation.
+- **OpenTelemetry instrumentation that creates tracing spans.**
+- SSE and WebSocket application logic.
+
+The table describes service roles with single instances. Replication, failover, resource sizing, and recovery arrangements are additional production deployment decisions.
+
