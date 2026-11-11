@@ -65,7 +65,9 @@ RUN uv pip install --python /opt/venv/bin/python \
     hypothesis \
     factory-boy \
     freezegun \
-    respx
+    respx \
+    pytest-html \
+    coverage
 
 WORKDIR /workspace
 
