@@ -926,3 +926,293 @@ These remain external services when already deployed. HDFS and Spark may each in
 
 The table describes service roles with single instances. Replication, failover, resource sizing, and recovery arrangements are additional production deployment decisions.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Django API Backend: Engineering Lifecycle and Delivery Roadmap
+
+## 1. Document Purpose, Scope, and Expected Outcomes
+
+### 1.1 Purpose and Intended Audience
+### 1.2 Business and Engineering Objectives
+### 1.3 Application Scope and Exclusions
+### 1.4 Existing Systems and Project Constraints
+### 1.5 Expected Deliverables and Measurable Outcomes
+### 1.6 Document Ownership and Revision History
+
+## 2. Requirements Discussion — Business Needs, Users, and Constraints
+
+### 2.1 Stakeholders and Decision-Making Responsibilities
+### 2.2 User Groups, Roles, and Access Needs
+### 2.3 Business Use Cases and Functional Requirements
+### 2.4 Data Sources, Data Types, and Expected Volumes
+### 2.5 Performance, Availability, and Scalability Expectations
+### 2.6 Security, Privacy, and Audit Requirements
+### 2.7 Infrastructure, Connectivity, Budget, and Staffing Constraints
+### 2.8 Assumptions, Open Questions, and Requirement Approval
+
+## 3. Workflow Definition — Business Rules, Success Criteria, and Failure Outcomes
+
+### 3.1 User Actions and End-to-End Workflows
+### 3.2 Business Rules and Operation Preconditions
+### 3.3 Synchronous and Asynchronous Execution
+### 3.4 Required Steps and Optional Follow-Up Actions
+### 3.5 Operation States and Allowed Transitions
+### 3.6 Success, Rejection, Failure, and Unknown Outcomes
+### 3.7 Cancellation, Compensation, and Manual Intervention
+### 3.8 Acceptance Criteria and Representative Failure Scenarios
+
+## 4. Architecture Design — System Boundaries, Data Ownership, and Responsibilities
+
+### 4.1 System Context and High-Level Architecture
+### 4.2 Modular Monolith Structure and Separation of Concerns
+### 4.3 Frontend, API, Worker, and Scheduler Responsibilities
+### 4.4 Application-Owned State and External Data Ownership
+### 4.5 Database, File Storage, Search, and Messaging Boundaries
+### 4.6 External API Contracts and Integration Boundaries
+### 4.7 Trust Boundaries and Service Identities
+### 4.8 Deployment Topology and Architecture Decision Records
+
+## 5. Delivery Planning — Priorities, Dependencies, Milestones, and Acceptance Criteria
+
+### 5.1 Initial Release Scope and Minimum Required Capabilities
+### 5.2 Subtask Prioritization and Implementation Depth
+### 5.3 Mandatory Security and Data-Correctness Requirements
+### 5.4 Capability Dependencies and Implementation Sequence
+### 5.5 Continuous Testing, Logging, Configuration, and Security Responsibilities
+### 5.6 Milestones, Deliverables, and Phase Completion Criteria
+### 5.7 Ownership, Effort Estimates, Risks, and Blockers
+### 5.8 Deferred Capabilities and Activation Conditions
+
+## 6. Before Setup — Environment, Infrastructure, and Access Preparation
+
+### 6.1 Development, Test, Staging, and Production Environments
+### 6.2 Compute, Storage, Network, and Resource Requirements
+### 6.3 Existing Services and Newly Required Services
+### 6.4 Network Routes, DNS, Ports, and Firewall Access
+### 6.5 Service Accounts, Credentials, and Least-Privilege Access
+### 6.6 Certificates and Secure Connectivity Requirements
+### 6.7 Dependency Acquisition and Reproducibility Requirements
+### 6.8 Test Data, External Sandboxes, and Setup Readiness
+
+## 7. Setup — Configuration Management, Secrets, and Feature Flags
+
+### 7.1 Configuration Sources and Override Precedence
+### 7.2 Environment-Specific Settings and Isolation
+### 7.3 Configuration Schemas, Defaults, and Startup Validation
+### 7.4 Connection, Timeout, Retry, and Resource-Limit Settings
+### 7.5 Secret Injection, Access Control, and Exposure Prevention
+### 7.6 Feature Flags, Safe Defaults, and Emergency Disablement
+### 7.7 Configuration Versioning, Change History, and Reload Rules
+### 7.8 Configuration Tests and Feature-Flag Behavior Tests
+
+## 8. Setup — Application Structure, Runtime, and Required Supporting Services
+
+### 8.1 Repository Structure and Module Ownership
+### 8.2 Business Logic, API Handlers, and Integration Modules
+### 8.3 Shared Utilities and Dependency Boundaries
+### 8.4 Application Runtime and Container Configuration
+### 8.5 Required Supporting Services and Persistent Storage
+### 8.6 Application Database Initialization and Schema Management
+### 8.7 Repeatable Seed Data and Environment Initialization
+### 8.8 Startup, Health Endpoints, Shutdown, and Resource Cleanup
+
+## 9. Setup — Testing Foundations, TDD Workflow, and Automated Quality Checks
+
+### 9.1 Test Strategy and Behavior-Based Acceptance Examples
+### 9.2 Test Runner, Fixtures, and Isolated Test Environments
+### 9.3 TDD Cycle — Failing Test, Passing Implementation, and Refactoring
+### 9.4 Unit, Integration, Contract, and End-to-End Test Boundaries
+### 9.5 Test Doubles and Verification Against Real Dependencies
+### 9.6 Deterministic Tests, Controlled Clocks, and Repeatable Data
+### 9.7 Linting, Formatting, Static Analysis, and Code Review
+### 9.8 Continuous Integration, Coverage Review, and Failure Reporting
+### 9.9 Dependency Vulnerability and Secret Scanning
+
+## 10. Setup — Logging, Debugging, and Initial Observability
+
+### 10.1 Structured Application, Access, and Error Logs
+### 10.2 Log Levels and Environment-Specific Verbosity
+### 10.3 Request, Operation, Job, and Trace Identifiers
+### 10.4 Sensitive-Data Redaction and Log Injection Prevention
+### 10.5 Exception Capture and Internal Diagnostic Details
+### 10.6 Diagnostic Commands and Request Inspection
+### 10.7 Initial Request Metrics and Trace Instrumentation
+### 10.8 Log Rotation, Storage Limits, and Access Controls
+### 10.9 Logging and Diagnostic Verification
+
+## 11. After Setup — Foundation Verification and Development Readiness
+
+### 11.1 Clean Installation and Reproducible Startup
+### 11.2 Missing Configuration and Invalid-Secret Behavior
+### 11.3 Network Connectivity and Dependency Permissions
+### 11.4 Initial Request–Response and Error-Handling Checks
+### 11.5 Test Execution and Continuous Integration Verification
+### 11.6 Log Correlation, Metrics, and Trace Verification
+### 11.7 Persistence, Restart, and Shutdown Checks
+### 11.8 Foundation Acceptance and Unresolved Issues
+
+## 12. Core Development — Authentication, Authorization, and Input Security
+
+### 12.1 User and Service Authentication
+### 12.2 Password Hashing and Credential Verification
+### 12.3 Session or Token Creation, Validation, Expiry, and Invalidation
+### 12.4 Login Throttling and Account Protection
+### 12.5 Role-Based, Action-Level, and Resource-Level Permissions
+### 12.6 Input Validation, Normalization, and Injection Prevention
+### 12.7 Browser Security, Cross-Origin Rules, and Trusted Hosts
+### 12.8 Outbound Request Security and Destination Restrictions
+### 12.9 Authentication and Permission Audit Records
+### 12.10 Security Tests Developed Alongside Protected Features
+
+## 13. Core Development — API Contracts, Business Logic, and Data Access
+
+### 13.1 Request Routing, Middleware, and Request Context
+### 13.2 Request, Response, and Error Schemas
+### 13.3 HTTP Methods, Status Codes, and Response Headers
+### 13.4 Business Rules, Preconditions, and Workflow Coordination
+### 13.5 Data Models, Query Patterns, and Integrity Constraints
+### 13.6 Pagination, Filtering, Sorting, and Bounded Results
+### 13.7 Data-Change Audit Records
+### 13.8 Timezone-Aware Timestamps and Time Handling
+### 13.9 API Documentation, Versioning, and Compatibility
+### 13.10 TDD for Business Rules and API Behavior
+
+## 14. Integration Development — External Services and Connection Management
+
+### 14.1 Cassandra Access and Permitted Keyspace Operations
+### 14.2 HDFS File Access and Elasticsearch Operations
+### 14.3 ArcGIS and Oracle REST Integrations
+### 14.4 Spark and Other External Processing Services
+### 14.5 Service Clients, Connection Reuse, and Pool Limits
+### 14.6 Outbound Credentials, Payload Mapping, and Response Validation
+### 14.7 Connection Timeouts, Response Timeouts, and Overall Deadlines
+### 14.8 External Errors, Pending Results, and Unknown Outcomes
+### 14.9 Remote Identifiers and Local Resource Mappings
+### 14.10 Dependency Metrics, Trace Propagation, and Integration Tests
+
+## 15. Workflow Reliability — Concurrency, Idempotency, Partial Failures, and Recovery
+
+### 15.1 Required and Optional Dependencies per Workflow
+### 15.2 Concurrent Changes and Lost-Update Prevention
+### 15.3 Idempotency Keys and Duplicate Request Detection
+### 15.4 Durable Operation and Step Tracking
+### 15.5 Cross-System Write Ordering and Completion Rules
+### 15.6 Retry Eligibility, Backoff, Jitter, and Retry Budgets
+### 15.7 Lost Responses and Unknown-Outcome Resolution
+### 15.8 Partial-Write Detection and Reconciliation
+### 15.9 Compensation, Compensation Failure, and Manual Recovery
+### 15.10 Outage Behavior, Circuit Breakers, and Failure Isolation
+### 15.11 Concurrency, Duplicate-Submission, and Recovery Tests
+
+## 16. Feature-Driven Expansion — Messaging, Background Jobs, Real-Time Updates, Streaming, and Caching
+
+### 16.1 Feature Activation Criteria and Required Safeguards
+### 16.2 Message Contracts, Routing, and Reliable Publication
+### 16.3 Consumer Acknowledgments, Duplicate Handling, and Dead-Letter Recovery
+### 16.4 Background Job Ownership, Persistent Status, and Results
+### 16.5 Worker Crashes, Job Cancellation, and Abandoned-Job Recovery
+### 16.6 Scheduled Tasks, Overlapping Runs, and Missed Executions
+### 16.7 SSE and WebSockets — Authorization, Reconnection, and State Recovery
+### 16.8 File Upload Security and Large-Media Streaming
+### 16.9 Bounded Buffers, Backpressure, and Disconnect Cleanup
+### 16.10 Caching — Eligibility, Invalidation, Isolation, and Failure Behavior
+### 16.11 CDN Delivery and Protected Content
+### 16.12 Webhooks — Verification, Replay Protection, and Delivery Tracking
+### 16.13 Feature-Specific Logging, Metrics, and Failure Tests
+
+## 17. Operational Preparation — Monitoring, Backups, Runbooks, and Support Ownership
+
+### 17.1 Centralized Log Collection, Search, and Retention
+### 17.2 Metrics, Distributed Traces, and Operational Dashboards
+### 17.3 Health Checks, External Uptime Probes, and User-Journey Checks
+### 17.4 Alert Thresholds, Routing, and Noise Control
+### 17.5 Backup Scope, Scheduling, Encryption, and Retention
+### 17.6 Restore Procedures and Cross-System Reconciliation
+### 17.7 Recovery Time and Recovery Point Objectives
+### 17.8 Credential Rotation and Certificate Expiry Monitoring
+### 17.9 Operational Runbooks, Support Ownership, and Escalation
+### 17.10 Capacity Baselines, Resource Budgets, and Cost Alerts
+
+## 18. Before Deployment — Security, Performance, Recovery, and Release Verification
+
+### 18.1 Release Scope and Business Acceptance
+### 18.2 Production Configuration, Secrets, and Feature-Flag Review
+### 18.3 Production Runtime, Reverse Proxy, and Network Security
+### 18.4 Database Migration and Compatibility Verification
+### 18.5 Regression, Contract, End-to-End, and Security Testing
+### 18.6 Load, Stress, Soak, and Resource-Limit Testing
+### 18.7 Dependency Outage, Partial Failure, and Recovery Testing
+### 18.8 Traffic Draining, Graceful Shutdown, and Restart Verification
+### 18.9 Backup Restore and Disaster-Recovery Verification
+### 18.10 Rollout, Rollback, and Database Repair Readiness
+### 18.11 Release Evidence, Outstanding Risks, and Go-Live Decision
+
+## 19. During Deployment — Controlled Rollout, Migration, Validation, and Rollback
+
+### 19.1 Release Artifact and Target Environment Verification
+### 19.2 Pre-Deployment Backups and Recovery Checkpoints
+### 19.3 Configuration and Secret Deployment
+### 19.4 Schema Migrations and Data Initialization
+### 19.5 Application, Worker, and Scheduler Rollout
+### 19.6 Startup Checks and Controlled Traffic Introduction
+### 19.7 Feature Enablement and Smoke Tests
+### 19.8 Live Error, Latency, Resource, and Backlog Monitoring
+### 19.9 Stop Conditions, Rollback, and Forward Repair
+### 19.10 Deployment Records and Stakeholder Communication
+
+## 20. After Deployment — Production Verification, Stabilization, and Handover
+
+### 20.1 Critical User Workflow Verification
+### 20.2 Data Integrity and Cross-System Consistency Checks
+### 20.3 Pending Operations, Failed Jobs, and Unknown Outcomes
+### 20.4 Authentication, Authorization, and Audit Verification
+### 20.5 Production Performance and Resource Baselines
+### 20.6 Alert Delivery, Backup Execution, and Support Readiness
+### 20.7 Early Defect Triage and Regression Test Additions
+### 20.8 Operational Handover and Release Acceptance
+
+## 21. Continuous Operations — Maintenance, Incident Response, Capacity, and Cost Management
+
+### 21.1 Daily Health, Backlog, and Failure Review
+### 21.2 Incident Detection, Escalation, and Recovery
+### 21.3 Root-Cause Analysis and Corrective Actions
+### 21.4 Configuration Changes and Feature-Flag Lifecycle
+### 21.5 Credential Rotation, Security Patches, and Dependency Updates
+### 21.6 API Evolution, Schema Changes, and Data Backfills
+### 21.7 Log, Audit, Telemetry, and Business-Data Retention
+### 21.8 Restore Exercises and Disaster-Recovery Drills
+### 21.9 Profiling, Capacity Planning, and Performance Improvement
+### 21.10 Cost Review and Unused-Resource Cleanup
+
+## 22. Ongoing Review — Delivery Progress, Technical Debt, and Future Capabilities
+
+### 22.1 Capability Coverage and Implementation Status
+### 22.2 Milestone Progress, Dependencies, and Blockers
+### 22.3 Quality, Security, and Reliability Trends
+### 22.4 Technical Debt and Maintenance Priorities
+### 22.5 Deferred Capabilities and Activation Decisions
+### 22.6 Architecture Assumptions and Decision Reassessment
+### 22.7 Resource Needs, Ownership Changes, and Management Decisions
+### 22.8 Roadmap Updates and Next-Release Priorities
